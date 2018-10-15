@@ -16,3 +16,4 @@ height - height of bounding box
 
 fps - fps of video
 
+UCF-Crime Shoplifting average width = 162, height = 162
