@@ -1,4 +1,6 @@
-id - youtube id
+id - id
+
+youtube_id - youtube id
 
 class - 0:no shoplifting, 1:shoplifting
 
@@ -16,4 +18,10 @@ height - height of bounding box
 
 fps - fps of video
 
-UCF-Crime Shoplifting average width = 162, height = 162
+UCF-Crime Shoplifting
+average width = 161.20967741935485
+average height = 161.66129032258064
+max width = 263.0
+max height = 234.0
+min width = 69.0
+min height = 84.0

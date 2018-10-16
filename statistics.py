@@ -28,3 +28,7 @@ for i in range(args.start_number, args.end_number):
 
 print('average width = {}'.format(np.mean(width)))
 print('average height = {}'.format(np.mean(height)))
+print('max width = {}'.format(np.max(width)))
+print('max height = {}'.format(np.max(height)))
+print('min width = {}'.format(np.min(width)))
+print('min height = {}'.format(np.min(height)))
