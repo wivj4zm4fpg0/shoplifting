@@ -16,13 +16,13 @@ with open('label.csv', 'w') as f:
             if no_action_index <= 98:
                 subset[i] = 'train'
             else:
-                subset[i] = 'val'
+                subset[i] = 'validation'
             no_action_index += 1
         else:
             if action_index <= 98:
                 subset[i] = 'train'
             else:
-                subset[i] = 'val'
+                subset[i] = 'validation'
             action_index += 1
 
     sorted_subset = sorted(subset.items(), key=operator.itemgetter(0))
