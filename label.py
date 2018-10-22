@@ -1,6 +1,7 @@
 import pandas as pd
 import random
 import operator
+import re
 
 csv = pd.read_csv('out.csv', sep=' ')
 action_index = 0
@@ -27,4 +28,4 @@ with open('label.csv', 'w') as f:
 
     sorted_subset = sorted(subset.items(), key=operator.itemgetter(0))
     for i in range(len(csv)):
-        f.write('{} {} {} {}\n'.format(csv['id'][i], csv['video_name'][i], csv['class'][i], sorted_subset[i][1]))
+        f.write('{} {} {} {}\n'.format(csv['id'][i], re.sub(r'\.mp4', '', csv['video_name'][i]), csv['class'][i], sorted_subset[i][1]))
