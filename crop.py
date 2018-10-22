@@ -1,11 +1,23 @@
 import re
+import os
 
 import pandas as pd
 
 csv = pd.read_csv('out.csv', sep=' ')
 
+width = 300
+height = 300
 with open('final_crop.sh', 'w') as f:
-    f.write('#!/bin/bash -eu\n\ncd $1\n\n')
+    f.write('#!/bin/bash -eu\n\n')
     for i in range(len(csv['id'])):
+        scale_x = -1
+        scale_y = -1
+        if csv['width'][i] / csv['height'][i] >= 4 / 3:
+            scale_x = width
+        else:
+            scale_y = height
         out_name = '{}_{}.mp4'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i])
-        f.write('ffmpeg -y -i -ss {} -to {} {}'.format(csv['start_time'], csv['end_time'], out_name))
+        f.write(
+            'ffmpeg -y -i {} -vf crop={}:{}:{}:{},scale={}:{},pad=width={}:height={}:x=iw/2:y=ih/2:color=black -ss {} -to {} {}\n'.format(
+                os.path.join('$1', csv['video_name'][i]), csv['width'][i], csv['height'][i], csv['x'][i], csv['y'][i],
+                width, height, width, height, csv['start_time'][i], csv['end_time'][i], os.path.join('$2', out_name)))
