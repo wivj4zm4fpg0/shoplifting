@@ -1,6 +1,6 @@
 import pandas as pd
 
-csv = pd.read_csv('annotations.csv', sep=' ')
+csv = pd.read_csv('under_sampling.csv', sep=' ')
 
 
 def time_format(string):
@@ -28,9 +28,9 @@ with open('out.csv', 'w') as f:
             fps = 11
         elif 11 <= time <= 16:
             fps = 3
-        elif 17 <= time <= 32:
+        elif 17 <= time <= 31:
             fps = 2
-        elif time >= 33:
+        elif time >= 32:
             fps = 1
         f.write('{} {} {} {} {} {} {} {} {} {}\n'.format(i, csv['video_name'][i], csv['class'][i], csv['start_time'][i],
                                                          csv['end_time'][i], csv['x'][i], csv['y'][i], csv['width'][i],

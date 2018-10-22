@@ -7,12 +7,13 @@ csv = pd.read_csv('out.csv', sep=' ')
 
 width = 300
 height = 300
+
 with open('final_crop.sh', 'w') as f:
     f.write('#!/bin/bash -eu\n\n')
     for i in range(len(csv['id'])):
         scale_x = -1
         scale_y = -1
-        if csv['width'][i] / csv['height'][i] >= 4 / 3:
+        if csv['width'][i] / csv['height'][i] >= 1:
             scale_x = width
         else:
             scale_y = height
@@ -20,4 +21,5 @@ with open('final_crop.sh', 'w') as f:
         f.write(
             'ffmpeg -y -i {} -vf crop={}:{}:{}:{},scale={}:{},pad=width={}:height={}:x=iw/2:y=ih/2:color=black -ss {} -to {} {}\n'.format(
                 os.path.join('$1', csv['video_name'][i]), csv['width'][i], csv['height'][i], csv['x'][i], csv['y'][i],
-                width, height, width, height, csv['start_time'][i], csv['end_time'][i], os.path.join('$2', out_name)))
+                scale_x, scale_y, width, height, csv['start_time'][i], csv['end_time'][i],
+                os.path.join('$2', out_name)))

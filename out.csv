@@ -117,8 +117,8 @@ id video_name class start_time end_time x y width height fps
 115 video-fs-ifFsc8Bg_resize.mp4 1 00:00:32 00:00:47 232 182 133 207 3
 116 video-gkitFhxrYc8.mp4 1 00:01:08 00:01:16 174 15 180 312 5
 117 video-gkitFhxrYc8.mp4 1 00:01:16 00:01:27 174 15 180 312 3
-118 video-lZPbkfUYavo.mp4 0 00:00:00 00:01:18 50 107 173 228 1
-119 video-lZPbkfUYavo.mp4 1 00:01:18 00:01:50 50 107 173 228 2
+118 video-lZPbkfUYavo.mp4 0 00:01:08 00:01:18 50 107 173 228 4
+119 video-lZPbkfUYavo.mp4 1 00:01:18 00:01:50 50 107 173 228 1
 120 video-lZPbkfUYavo.mp4 0 00:01:50 00:02:00 50 107 173 228 4
 121 video-nm2KxtOZOqA.mp4 0 00:01:20 00:01:30 257 20 281 316 4
 122 video-nm2KxtOZOqA.mp4 1 00:01:30 00:01:35 257 20 281 316 7
@@ -127,7 +127,7 @@ id video_name class start_time end_time x y width height fps
 125 video-oLRqoHPl6xU.mp4 1 00:02:20 00:02:25 95 7 146 180 7
 126 video-oLRqoHPl6xU.mp4 0 00:02:25 00:02:34 95 7 146 180 4
 127 video-r31hPlS1CwE_resize.mp4 0 00:00:38 00:00:48 80 165 247 190 4
-128 video-r31hPlS1CwE_resize.mp4 1 00:00:48 00:01:20 80 165 247 190 2
+128 video-r31hPlS1CwE_resize.mp4 1 00:00:48 00:01:20 80 165 247 190 1
 129 video-r31hPlS1CwE_resize.mp4 0 00:01:20 00:01:30 80 165 247 190 4
 130 video-u6dGiANdDNQ_1.mp4 0 00:00:00 00:00:10 140 42 183 239 4
 131 video-u6dGiANdDNQ_1.mp4 1 00:00:10 00:00:21 140 42 183 239 3
@@ -136,7 +136,7 @@ id video_name class start_time end_time x y width height fps
 134 video-uGpFQT3Uiig_1.mp4 1 00:01:06 00:01:17 410 39 86 139 3
 135 video-uGpFQT3Uiig_1.mp4 0 00:01:17 00:01:27 410 39 86 139 4
 136 video-uGpFQT3Uiig_6.mp4 0 00:00:00 00:00:08 308 66 179 198 5
-137 video-uGpFQT3Uiig_6.mp4 1 00:00:08 00:00:40 308 66 179 198 2
+137 video-uGpFQT3Uiig_6.mp4 1 00:00:08 00:00:40 308 66 179 198 1
 138 video-uGpFQT3Uiig_6.mp4 0 00:00:40 00:00:46 308 66 179 198 6
 139 video-vA9duDV6VFc.mp4 0 00:00:45 00:00:55 194 216 261 121 4
 140 video-vA9duDV6VFc.mp4 1 00:00:55 00:01:14 194 216 261 121 2
