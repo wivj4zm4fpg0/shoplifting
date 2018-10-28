@@ -1,10 +1,21 @@
-import pandas as pd
-import re
+import argparse
 import os
+import re
+
+import pandas as pd
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    '--input_file', default='out.csv', type=str
+)
+parser.add_argument(
+    '--output_file', default='frame_split.sh', type=str
+)
+args = parser.parse_args()
 
 csv = pd.read_csv('out.csv', sep=' ')
 
-with open('frame_split.sh', 'w') as f:
+with open(args.output_file, 'w') as f:
     f.write('#!/bin/bash -eu\n\n')
     for i in range(len(csv['id'])):
         out_name = '{}_{}.mp4'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i])

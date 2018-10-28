@@ -1,6 +1,7 @@
-import pandas as pd
 import argparse
+
 import numpy as np
+import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -20,7 +21,7 @@ width = np.empty(0)
 height = np.empty(0)
 
 if not args.end_number:
-    args.end_number = len(table['id'])
+    args.end_number = len(table)
 
 for i in range(args.start_number, args.end_number):
     width = np.append(width, table['width'][i])
@@ -28,6 +29,8 @@ for i in range(args.start_number, args.end_number):
 
 print('average width = {}'.format(np.mean(width)))
 print('average height = {}'.format(np.mean(height)))
+print('median width = {}'.format(np.median(width)))
+print('median height = {}'.format(np.median(height)))
 print('max width = {}'.format(np.max(width)))
 print('max height = {}'.format(np.max(height)))
 print('min width = {}'.format(np.min(width)))
