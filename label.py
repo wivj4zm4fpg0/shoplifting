@@ -15,17 +15,17 @@ with open('label.csv', 'w') as f:
     for i in random_csv:
         if csv['class'][i] == 0:
             if no_action_index <= 98:
-                subset[i] = 'train'
+                subset[i] = 'training'
             else:
                 subset[i] = 'validation'
             no_action_index += 1
         else:
             if action_index <= 98:
-                subset[i] = 'train'
+                subset[i] = 'training'
             else:
                 subset[i] = 'validation'
             action_index += 1
 
     sorted_subset = sorted(subset.items(), key=operator.itemgetter(0))
     for i in range(len(csv)):
-        f.write('{} {} {} {}\n'.format(csv['id'][i], re.sub(r'\.mp4', '', csv['video_name'][i]), csv['class'][i], sorted_subset[i][1]))
+        f.write('{} {} {} {}\n'.format(csv['id'][i], '{}_{}'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i]), csv['class'][i], sorted_subset[i][1]))
