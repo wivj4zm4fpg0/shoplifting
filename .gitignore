@@ -1,1 +1,9 @@
-.idea
+*
+!csv_files
+!csv_files/*
+!scripts
+!scripts/*
+!mid_files
+!mid_files/*
+!README.md
+!.gitignore

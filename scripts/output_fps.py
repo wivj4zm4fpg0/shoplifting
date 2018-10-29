@@ -4,13 +4,13 @@ import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    '--input_file', default='under_sampling.csv', type=str
+    '-i', '--input_file', default='under_sampling.csv', type=str
 )
 parser.add_argument(
-    '--output_file', default='out.csv', type=str
+    '-o', '--output_file', default='out.csv', type=str
 )
 parser.add_argument(
-    '--frames_number', default=64, type=int
+    '-f', '--frames_number', default=64, type=int
 )
 args = parser.parse_args()
 

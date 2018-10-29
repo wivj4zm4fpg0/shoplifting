@@ -40,6 +40,7 @@ with open(args.input_directory, 'w') as f:
 
     sorted_subset = sorted(subset.items(), key=operator.itemgetter(0))
     for i in range(len(csv)):
-        f.write('{} {} {} {}\n'.format(csv['id'][i],
-                                       '{}_{}'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i]),
-                                       csv['class'][i], sorted_subset[i][1]))
+        f.write('{} {} {} {}\n'.format(
+            csv['id'][i],
+            '{}_{}'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i]),
+            csv['class'][i], sorted_subset[i][1]))

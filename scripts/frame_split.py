@@ -13,7 +13,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv('out.csv', sep=' ')
+csv = pd.read_csv(args.input_file, sep=' ')
 
 with open(args.output_file, 'w') as f:
     f.write('#!/bin/bash -eu\n\n')
