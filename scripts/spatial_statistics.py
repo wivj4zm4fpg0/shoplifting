@@ -8,24 +8,24 @@ parser.add_argument(
     'input_file', default=None, type=str
 )
 parser.add_argument(
-    '--start_number', default=0, type=int
+    '-s', '--start_number', default=0, type=int
 )
 parser.add_argument(
-    '--end_number', default=None, type=int
+    '-e', '--end_number', default=None, type=int
 )
 args = parser.parse_args()
 
-table = pd.read_csv(args.input_file, sep=' ')
+csv = pd.read_csv(args.input_file, sep=' ')
 
 width = np.empty(0)
 height = np.empty(0)
 
 if not args.end_number:
-    args.end_number = len(table)
+    args.end_number = len(csv)
 
 for i in range(args.start_number, args.end_number):
-    width = np.append(width, table['width'][i])
-    height = np.append(height, table['height'][i])
+    width = np.append(width, csv['width'][i])
+    height = np.append(height, csv['height'][i])
 
 print('average width = {}'.format(np.mean(width)))
 print('average height = {}'.format(np.mean(height)))

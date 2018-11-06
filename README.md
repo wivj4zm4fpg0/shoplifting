@@ -2,7 +2,7 @@
 |label|description|
 |:---:|:---:|
 |id|id|
-|video_name|name of video file|
+|video_path|name of video file|
 |class|0: no shoplifting, 1: shoplifting|
 |start_time|time when action begins|
 |end_time|time when action ends|

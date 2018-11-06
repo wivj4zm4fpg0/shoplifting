@@ -37,7 +37,7 @@ while getopts :h-: OPT; do
     esac
 done
 
-if [ $# -lt 1 ]; then
+if [[ $# -lt 1 ]]; then
     usage
     exit 1
 fi

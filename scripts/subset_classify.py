@@ -7,10 +7,10 @@ import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    '--input_file', default='out.csv', type=str
+    '-i', '--input_file', default='out.csv', type=str
 )
 parser.add_argument(
-    '--input_directory', default='subset_annotation.csv', type=str
+    '-o', '--output_file', default='subset_annotation.csv', type=str
 )
 args = parser.parse_args()
 
@@ -22,7 +22,7 @@ subset = {}
 random_csv = list(range(len(csv)))
 random.shuffle(random_csv)
 
-with open(args.input_directory, 'w') as f:
+with open(args.output_file, 'w') as f:
     f.write('id video_name class subset\n')
     for i in random_csv:
         if csv['class'][i] == 0:
@@ -43,4 +43,6 @@ with open(args.input_directory, 'w') as f:
         f.write('{} {} {} {}\n'.format(
             csv['id'][i],
             '{}_{}'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i]),
-            csv['class'][i], sorted_subset[i][1]))
+            csv['class'][i],
+            sorted_subset[i][1]
+        ))
