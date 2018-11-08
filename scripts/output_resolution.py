@@ -3,7 +3,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    '-i', '--output_file', default='final_crop_videos', type=str
+    '-i', '--input_file', default='final_crop_videos', type=str
 )
 args = parser.parse_args()
 

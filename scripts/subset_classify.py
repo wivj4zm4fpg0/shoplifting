@@ -22,17 +22,20 @@ subset = {}
 random_csv = list(range(len(csv)))
 random.shuffle(random_csv)
 
+divide_rate = 5
+threshold = int((len(csv) - len(csv) / divide_rate) / 2)
+
 with open(args.output_file, 'w') as f:
     f.write('id video_name class subset\n')
     for i in random_csv:
         if csv['class'][i] == 0:
-            if no_action_index <= 98:
+            if no_action_index <= threshold:
                 subset[i] = 'training'
             else:
                 subset[i] = 'validation'
             no_action_index += 1
         else:
-            if action_index <= 98:
+            if action_index <= threshold:
                 subset[i] = 'training'
             else:
                 subset[i] = 'validation'
