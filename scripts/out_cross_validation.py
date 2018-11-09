@@ -1,4 +1,5 @@
 import argparse
+import re
 
 import pandas as pd
 
@@ -28,19 +29,19 @@ for i in range(divide_rate):
         for j in range(len(csv)):
             if csv['class'][j] == 0:
                 no_action_count += 1
-                if validation_index_max > no_action_count >= validation_index_min:
+                if validation_index_max >= no_action_count > validation_index_min:
                     subset = 'validation'
                 else:
                     subset = 'training'
             else:
                 action_count += 1
-                if validation_index_max > action_count >= validation_index_min:
+                if validation_index_max >= action_count > validation_index_min:
                     subset = 'validation'
                 else:
                     subset = 'training'
             f.write('{} {} {} {}\n'.format(
                 csv['id'][j],
-                csv['video_name'][j],
+                re.sub(r'\.mp4', '', csv['video_name'][j]),
                 csv['class'][j],
                 subset
             ))
