@@ -17,10 +17,6 @@ def parser():
         help='output path'
     )
     arg_parse.add_argument(
-        '-fn', '--frame_number', default=None, type=float,
-        help='frame number you want to split'
-    )
-    arg_parse.add_argument(
         '-nci', '--no_create_image', action='store_true',
         help='create image flag.'
     )
@@ -30,21 +26,10 @@ def parser():
         help='flow type id. 0: farnback, 1: tvl1, 2: brox'
     )
     arg_parse.add_argument(
-        '-f', '--fps', default=1, type=int,
-        help='frame rate'
-    )
-    arg_parse.add_argument(
         '-pn', '--parallel_number', default=-1, type=int,
         help='parallel process number'
     )
     return arg_parse.parse_args()
-
-
-def out_separation(duration, n_frame):
-    out = 1
-    while duration / out > n_frame:
-        out += 1
-    return out
 
 
 class ExtractVideos:
@@ -56,31 +41,14 @@ class ExtractVideos:
         self.flow_x_paths = []
         self.flow_y_paths = []
         self.count = 1
-        self.n_frames_paths = []
 
     def make_directory(self):
         input_path = self.args.input_path
         output_path = self.args.output_path
         for class_dir in os.listdir(input_path):
             class_dir_full = os.path.join(input_path, class_dir)
-            if not self.args.no_create_image:
-                self.n_frames_paths.append(os.path.join(output_path, 'images', class_dir))
-            self.n_frames_paths.append(os.path.join(
-                output_path,
-                'flow',
-                self.flow[self.args.flow_type],
-                'flow_x',
-                class_dir
-            ))
-            self.n_frames_paths.append(os.path.join(
-                output_path,
-                'flow',
-                self.flow[self.args.flow_type],
-                'flow_y',
-                class_dir
-            ))
             for video in os.listdir(class_dir_full):
-                video_path = os.path.join(input_path, class_dir, video)
+                video_path = os.path.join(class_dir_full, video)
                 video_name = re.sub(r'\.(avi|mkv|mp4|webm)', '', video)
                 image_path = os.path.join(output_path, 'images', class_dir, video_name)
                 flow_x_path = os.path.join(
@@ -123,28 +91,17 @@ class ExtractVideos:
         else:
             create_image_flag = 0
 
-        if self.args.frame_number:
-            video_fps = os.popen('ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of '
-                                 'csv=s=x:p=0 {}'.format(input_video_path)).read().split('/')
-            duration = os.popen(
-                'ffprobe -v error -select_streams v:0 -show_entries format=duration -of csv=s=x:p=0 {}'.format(
-                    input_video_path
-                )
-            ).read()
-            fps = out_separation(float(video_fps[0]) / float(video_fps[1]) * float(duration),
-                                 self.args.frame_number)
-        else:
-            fps = self.args.fps
-
         print('processing {}'.format(''.join(input_video_path.split('/')[-1:])))
         os.system(
-            'extract_gpu -f={} -i={} -x={} -y={} -n={} -t={} -o=dir -s={}'.format(
+            'extract_gpu -f={} -i={} -x={} -y={} -n={} -t={} -o=dir -s=1'.format(
                 input_video_path,
                 images_path + file_name,
                 flow_x_path + file_name,
                 flow_y_path + file_name,
                 create_image_flag,
-                self.args.flow_type, fps))
+                self.args.flow_type
+            )
+        )
 
     def large_data_processing(self):
         Parallel(
@@ -156,16 +113,11 @@ class ExtractVideos:
             self.flow_y_paths[i]
         ) for i in range(len(self.input_video_paths))])
 
-    def create_frame_number(self):
-        for path in self.n_frames_paths:
-            os.system('scripts/n_frames.sh {}'.format(path))
-
 
 if __name__ == '__main__':
     extract_videos = ExtractVideos(parser())
-    start_time = time.time()
     extract_videos.make_directory()
+    start_time = time.time()
     extract_videos.large_data_processing()
-    extract_videos.create_frame_number()
     end_time = time.time() - start_time
     print('Time :{}[sec]'.format(end_time))
