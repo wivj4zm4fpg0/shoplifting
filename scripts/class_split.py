@@ -27,7 +27,7 @@ os.makedirs(action, exist_ok=True)
 
 for i in range(len(csv)):
     path = '{}_{}{}'.format(
-        re.sub(r'\.mp4', '', os.path.join(args.output_file, csv['video_path'][i])),
+        re.sub(r'\.mp4', '', os.path.join(args.output_file, csv['video_name'][i])),
         csv['id'][i], suffix
     )
     if csv['class'][i] == 0:
