@@ -101,7 +101,7 @@ id video_name class subset
 99 video-bIxeQKzk9-0_99 0 training
 100 video-cusyKShBCi4_100 0 training
 101 video-cusyKShBCi4_101 1 validation
-102 video-cusyKShBCi4_102 0 training
+102 video-cusyKShBCi4_102 1 training
 103 video-cxzukX7Z_1I_resize_103 0 training
 104 video-cxzukX7Z_1I_resize_104 1 validation
 105 video-cxzukX7Z_1I_resize_105 1 validation

@@ -25,5 +25,5 @@ for classes in os.listdir(args.input_dir):
             i += space
         for j in ls:
             string = 'rm {}'.format(os.path.join(path, 'image_{:05}.jpg'.format(j)))
-            print(string)
+            # print(string)
             os.system(string)
