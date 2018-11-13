@@ -8,10 +8,17 @@ parser.add_argument(
 args = parser.parse_args()
 
 for video_name in os.listdir(args.input_file):
+    name = os.path.join(args.input_file, video_name)
     resolution = os.popen(
         'ffprobe -v error -select_streams v:0 -show_entries'
         ' stream=width,height -of csv=s=x:p=0 {}'.format(
-            os.path.join(args.input_file, video_name)
+            name
         )
     ).read().split('x')
-    print('{} = {}x{}'.format(video_name, resolution[0], resolution[1]))
+    if int(resolution[0]) >= 1000 or int(resolution[1]) >= 1000:
+        os.system(
+            'ffmpeg -y -i {} -vf scale=iw/2:ih/2 {}'.format(
+                name,
+                name
+            )
+        )

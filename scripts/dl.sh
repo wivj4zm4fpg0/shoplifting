@@ -83,7 +83,6 @@ youtube-dl --id -- 2BJHqG23sRg
 youtube-dl --id -- O4WmGxy9lC8
 youtube-dl --id -- MOdHbCSGhy4
 youtube-dl --id -- EjUlTqVXjj0
-youtube-dl --id -- hZrEweU8x1M
 youtube-dl --id -- o6HozKyz2cE
 youtube-dl --id -- A_KcGe-nqjw
 youtube-dl --id -- t0-8_s0u75k
@@ -92,4 +91,3 @@ youtube-dl --id -- mNM7xZqEXzw
 youtube-dl --id -- 4L8bOI6ers0
 youtube-dl --id -- mUiPTc9RsT8
 
-#rename -e 's/^(?!video-)(.*\.mp4$)/video-$1/' *
