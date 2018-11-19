@@ -34,6 +34,12 @@ os.makedirs(args.output_directory, exist_ok=True)
 def process(index):
     scale_x = -1
     scale_y = -1
+    width = csv['width'][i]
+    height = csv['height'][i]
+    if width > height:
+        height = width
+    else:
+        width = height
     if csv['width'][index] / csv['height'][index] >= args.width / args.height:
         scale_x = args.width
     else:

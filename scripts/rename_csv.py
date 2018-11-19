@@ -17,7 +17,12 @@ csv = pd.read_csv(args.input_file, sep=' ')
 with open(args.output_file, 'w') as f:
     f.write('id video_name class start_time end_time x y width height fps\n')
     for i in range(len(csv)):
-        out_name = '{}_{}.mp4'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i])
-        f.write('{} {} {} {} {} {} {} {} {} {}\n'.format(i, out_name, csv['class'][i], csv['start_time'][i],
-                                                         csv['end_time'][i], csv['x'][i], csv['y'][i], csv['width'][i],
-                                                         csv['height'][i], csv['fps'][i]))
+        out_name = '{}_{}.mp4'.format(re.sub(r'\.mp4', '', csv['video_name'][i]),
+                                      csv['id'][i])
+        f.write('{} {} {} {} {} {} {} {} {} {}\n'.format(i, out_name, csv['class'][i],
+                                                         csv['start_time'][i],
+                                                         csv['end_time'][i],
+                                                         csv['x'][i], csv['y'][i],
+                                                         csv['width'][i],
+                                                         csv['height'][i],
+                                                         csv['fps'][i]))
