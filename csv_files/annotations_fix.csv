@@ -1,4 +1,4 @@
-id video_name class start_time end_timex y width height original_width original_height
+id video_name class start_time end_time x y width height original_width original_height
 0 video-2EoU6EXnPuE.mp4 0 00:00:00 00:00:08 261 215 175 190 640 480
 1 video-2EoU6EXnPuE.mp4 1 00:00:08 00:00:16 261 215 175 190 640 480
 2 video-2EoU6EXnPuE.mp4 0 00:00:16 00:00:29 261 215 175 190 640 480
@@ -75,7 +75,7 @@ id video_name class start_time end_timex y width height original_width original_
 73 video-OXlaho8wayQ_resize.mp4 0 00:01:50 00:10:03 263 70 408 374 960 540
 74 video-Q01ZWqsU6a8.mp4 0 00:00:06 00:07:00 328 197 128 140 640 360
 75 video-Q01ZWqsU6a8.mp4 1 00:07:00 00:07:42 328 197 128 140 640 360
-76 video-Q01ZWqsU6a8.mp4 0 00:07:42 00:07:42 328 197 128 140 640 360
+76 video-Q01ZWqsU6a8.mp4 0 00:07:42 00:07:52 328 197 128 140 640 360
 77 video-US59wO9bAv4_1.mp4 0 00:00:00 00:00:07 194 7 241 316 640 360
 78 video-US59wO9bAv4_1.mp4 1 00:00:07 00:00:18 194 7 241 316 640 360
 79 video-US59wO9bAv4_1.mp4 0 00:00:18 00:00:43 194 7 241 316 640 360

@@ -9,12 +9,15 @@ parser.add_argument(
 args = parser.parse_args()
 
 for file in os.listdir(args.input_dir):
-    os.rename(file, 'video-' + file)
+    os.rename(
+        os.path.join(args.input_dir, file),
+        os.path.join(args.input_dir, 'video-' + file)
+    )
 
 for file in os.listdir(args.input_dir):
-    if file not in '.mp4':
+    if '.mp4' not in file:
         output_name = re.sub(r'\..*$', '.mp4', file)
-        os.system('ffmpeg -y -i {} {}'.format(
+        print('ffmpeg -y -i {} {}'.format(
             os.path.join(args.input_dir, file),
             os.path.join(args.input_dir, output_name)
         ))
