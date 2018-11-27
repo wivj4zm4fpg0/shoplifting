@@ -17,7 +17,7 @@ for file in os.listdir(args.input_dir):
 for file in os.listdir(args.input_dir):
     if '.mp4' not in file:
         output_name = re.sub(r'\..*$', '.mp4', file)
-        print('ffmpeg -y -i {} {}'.format(
+        os.system('ffmpeg -y -i {} {}'.format(
             os.path.join(args.input_dir, file),
             os.path.join(args.input_dir, output_name)
         ))
