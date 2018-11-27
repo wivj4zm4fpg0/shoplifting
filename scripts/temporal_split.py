@@ -40,8 +40,12 @@ for i in range(len(csv)):
     current_start_time = format_time(csv['start_time'][i])
     current_end_time = current_start_time + args.split_time
     while current_end_time < end_time:
-        os.system('ffmpeg -y -i {} -ss {} -to {} {}'.format(
-
-        ))
+        command = 'ffmpeg -y -i {} -ss {} -to {} {}'.format(
+            os.path.join(args.input_directory, csv['video_name'][i]),
+            time_format(current_start_time), time_format(current_end_time),
+            os.path.join(args.output_directory, csv['video_name'][i])
+        )
+        print(command)
+        # os.system(command)
         current_start_time += args.split_time
         current_end_time += args.split_time
