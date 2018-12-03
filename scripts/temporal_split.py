@@ -6,12 +6,14 @@ import numpy as np
 import pandas as pd
 
 
+# 00:01:10 -> 70 に変換
 def format_time(string: str) -> int:
     times = string.split(":")
     during_time = int(times[1]) * 60 + int(times[2])
     return during_time
 
 
+# 70 -> 00:01:10 に変換
 def time_format(time: int) -> str:
     minute, second = divmod(time, 60)
     return f'00:{minute:02}:{second:02}'
@@ -30,11 +32,18 @@ parser.add_argument(
 parser.add_argument(
     '--split_time', default=10, type=int
 )
+parser.add_argument(
+    '--write_file_path', default=None, type=str
+)
 args = parser.parse_args()
 
 os.makedirs(args.output_directory, exist_ok=True)
 
-csv = pd.read_csv(args.input_csv)
+csv = pd.read_csv(args.input_csv, sep=' ')
+
+if args.write_file_path:
+    with open(args.write_file_path, 'w') as f:
+        f.write('#!/bin/bash -eu\n')
 
 j = 0
 for i in range(len(csv)):
@@ -44,20 +53,29 @@ for i in range(len(csv)):
     while current_end_time <= end_time:
         if not np.isnan(csv['suffix'][i]):
             out_name = '{}_{}_{}.mp4'.format(
+                j,
                 re.sub(r'\.mp4', '', csv['video_name'][i]),
-                int(csv['suffix'][i]),
-                j
+                int(csv['suffix'][i])
             )
         else:
-            out_name = '{}_{}.mp4'.format(re.sub(r'\.mp4', '', csv['video_name'][i]),
-                                          j)
+            out_name = '{}_{}.mp4'.format(
+                j,
+                re.sub(r'\.mp4', '', csv['video_name'][i])
+            )
+        input_path = os.path.join(args.input_directory, csv['video_name'][i])
         command = 'ffmpeg -y -i {} -ss {} -to {} {}'.format(
-            os.path.join(args.input_directory, csv['video_name'][i]),
-            time_format(current_start_time), time_format(current_end_time),
+            input_path,
+            time_format(current_start_time),
+            time_format(current_end_time),
             os.path.join(args.output_directory, out_name)
         )
         # print(command)
         os.system(command)
+        if not os.path.isfile(input_path):
+            print(input_path)
+        if args.write_file_path:
+            with open(args.write_file_path, 'a') as f:
+                f.write(f'{command}\n')
         current_start_time += args.split_time
         current_end_time += args.split_time
         j += 1
