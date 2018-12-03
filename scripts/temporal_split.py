@@ -30,10 +30,13 @@ parser.add_argument(
     '--input_csv', default=None, type=str
 )
 parser.add_argument(
-    '--split_time', default=10, type=int
+    '--split_time', default=5, type=int
 )
 parser.add_argument(
     '--write_file_path', default=None, type=str
+)
+parser.add_argument(
+    '--during_time', default=10, type=int
 )
 args = parser.parse_args()
 
@@ -49,7 +52,7 @@ j = 0
 for i in range(len(csv)):
     end_time = format_time(csv['end_time'][i])
     current_start_time = format_time(csv['start_time'][i])
-    current_end_time = current_start_time + args.split_time
+    current_end_time = current_start_time + args.during_time
     while current_end_time <= end_time:
         if not np.isnan(csv['suffix'][i]):
             out_name = '{}_{}_{}.mp4'.format(
