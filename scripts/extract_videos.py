@@ -9,11 +9,11 @@ from joblib import Parallel, delayed
 def parser():
     arg_parse = argparse.ArgumentParser()
     arg_parse.add_argument(
-        'input_path', default=None, type=str,
+        '--input_path', default=None, type=str,
         help='input path'
     )
     arg_parse.add_argument(
-        'output_path', default=None, type=str,
+        '--output_path', default=None, type=str,
         help='output path'
     )
     arg_parse.add_argument(

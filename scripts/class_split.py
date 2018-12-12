@@ -12,6 +12,9 @@ parser.add_argument(
 parser.add_argument(
     'output_file', default=None, type=str
 )
+parser.add_argument(
+    'add_id_to_video', action='store_true'
+)
 args = parser.parse_args()
 
 csv = pd.read_csv(args.input_file, sep=' ')
@@ -26,10 +29,14 @@ os.makedirs(no_action, exist_ok=True)
 os.makedirs(action, exist_ok=True)
 
 for i in range(len(csv)):
-    path = '{}_{}{}'.format(
-        re.sub(r'\.mp4', '', os.path.join(args.output_file, csv['video_name'][i])),
-        csv['id'][i], suffix
-    )
+    output_file_path = os.path.join(args.output_file, csv['video_name'][i])
+    if args.add_id_to_video:
+        path = '{}_{}{}'.format(
+            re.sub(r'\.mp4', '', output_file_path),
+            csv['id'][i], suffix
+        )
+    else:
+        path = output_file_path
     if csv['class'][i] == 0:
         shutil.move(path, no_action)
     else:

@@ -79,6 +79,15 @@ for i in range(len(csv)):
         if args.write_file_path:
             with open(args.write_file_path, 'a') as f:
                 f.write(f'{command}\n')
-        current_start_time += args.split_time
-        current_end_time += args.split_time
+
         j += 1
+
+        if current_end_time == end_time:
+            break
+
+        current_start_time += args.split_time
+
+        if current_end_time + args.split_time > end_time:
+            current_end_time = end_time
+        else:
+            current_end_time += args.split_time
