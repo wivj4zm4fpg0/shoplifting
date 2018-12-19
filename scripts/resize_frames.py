@@ -25,7 +25,7 @@ for i in range(len(csv)):
                 continue
 
             image_path = os.path.join(input_dir_path, image)
-            command = 'convert -crop {}x{}+{}+{} -resize {}x{} background "rgb(0, 0, 0)" -gravity center -extent {}x{} {}'.format(
+            command = 'convert {} -crop {}x{}+{}+{} -resize {}x{} -background "rgb(0, 0, 0)" -gravity center -extent {}x{} {}'.format(
                 image_path,
                 csv['width'][i],
                 csv['height'][i],
@@ -38,3 +38,4 @@ for i in range(len(csv)):
                 image_path
             )
             print(command)
+            # os.system(command)

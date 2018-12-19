@@ -5,17 +5,20 @@ import pandas as pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    '-i', '--input_file', default='final_crop_videos', type=str
+    '-i', '--input_file', default='input.csv', type=str
 )
 parser.add_argument(
-    '-o', '--output_file', default='cross_validation', type=str
+    '-o', '--output_file', default='out', type=str
+)
+parser.add_argument(
+    '--divide_rate', default=5, type=int
 )
 args = parser.parse_args()
 
 csv = pd.read_csv(args.input_file, sep=' ')
 csv = csv.sort_values(by=['class', 'id'], ascending=True)
 
-divide_rate = 5
+divide_rate = args.divide_rate
 validation_number = int(len(csv) / divide_rate / 2)
 
 for i in range(divide_rate):
