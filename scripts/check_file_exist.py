@@ -8,7 +8,7 @@ parser.add_argument('--input_paths', default=None, nargs='*')
 parser.add_argument('--csv_path', default=None, type=str)
 args = parser.parse_args()
 
-csv = pd.read_csv(args.csv_path, sep=' ')
+csv = pd.read_csv(args.csv_path, sep=r'\s', engine='python')
 
 for i in range(len(csv)):
     for input_path in args.input_paths:
@@ -22,7 +22,11 @@ for i in range(len(csv)):
         elif class_index == 0:
             class_name = 'no_action'
 
-        path = os.path.join(input_path, class_name, csv['base_name'][i])
+        path = os.path.join(
+            input_path,
+            class_name,
+            csv['base_name'][i]
+        )
         if os.path.exists(path):
             pass
             # print(f'exist {path}')

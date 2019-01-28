@@ -11,7 +11,7 @@ parser.add_argument('--csv_path', default=None, type=str)
 parser.add_argument('--remove_base_name', action='store_true')
 args = parser.parse_args()
 
-csv = pd.read_csv(args.csv_path, sep=' ')
+csv = pd.read_csv(args.csv_path, sep=r'\s', engine='python')
 
 for i in range(len(csv)):
     for input_path in args.input_paths:
@@ -20,8 +20,17 @@ for i in range(len(csv)):
             class_name = 'action'
         elif csv['class'][i] == 0:
             class_name = 'no_action'
-        copy_tree(os.path.join(input_path, class_name, csv['base_name'][i]),
-                  os.path.join(input_path, class_name, csv['video_name'][i]))
+        copy_tree(
+            os.path.join(
+                input_path,
+                class_name, csv['base_name'][i]
+            ),
+            os.path.join(
+                input_path,
+                class_name,
+                csv['video_name'][i]
+            )
+        )
 
 if args.remove_base_name:
     for i in range(len(csv)):
