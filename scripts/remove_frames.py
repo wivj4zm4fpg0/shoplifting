@@ -1,3 +1,6 @@
+# フラーム分割したフォルダを64フレームに間引くスクリプト
+
+
 import argparse
 import os
 

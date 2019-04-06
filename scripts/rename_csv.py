@@ -1,3 +1,6 @@
+# csvファイルのvideo_nameを修正して名前の最後にidと.mp4を付加するスクリプト
+
+
 import argparse
 import re
 
@@ -12,7 +15,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_file, sep=' ')
+csv = pd.read_csv(args.input_file, sep=r'\s', engine='python')
 
 with open(args.output_file, 'w') as f:
     f.write('id video_name class start_time end_time x y width height fps\n')

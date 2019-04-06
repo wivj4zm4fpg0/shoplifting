@@ -1,3 +1,6 @@
+# フレーム分割されたディレクトリ群のフレーム解像度を修正するスクリプト
+
+
 import argparse
 import os
 
@@ -10,7 +13,7 @@ parser.add_argument('--width', type=int, default=300)
 parser.add_argument('--height', type=int, default=300)
 args = parser.parse_args()
 
-csv = pd.read_csv(args.csv_path, sep=' ')
+csv = pd.read_csv(args.csv_path, sep=r'\s', engine='python')
 
 for i in range(len(csv)):
     for input_dir in args.input_dirs:

@@ -1,3 +1,8 @@
+# 動画を指定した時間で分割する
+# during_time = 10, split_time = 5の場合 -> ５秒ずつずらしながら10秒の動画を切り抜く
+# csvファイルにstart_timeとend_timeを記述する必要がある
+
+
 import argparse
 import os
 import re
@@ -33,7 +38,8 @@ parser.add_argument(
     '--split_time', default=5, type=int
 )
 parser.add_argument(
-    '--write_file_path', default=None, type=str
+    '--write_file_path', default=None, type=str,
+    help='実行するコマンドをファイルに書き出す'
 )
 parser.add_argument(
     '--during_time', default=10, type=int

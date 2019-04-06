@@ -1,3 +1,6 @@
+# 動画分をシサイズするスクリプト
+
+
 import argparse
 import os
 import shutil

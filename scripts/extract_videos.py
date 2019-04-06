@@ -1,3 +1,6 @@
+# 動画からオプティカルフローを生成するスクリプト
+
+
 import argparse
 import os
 import re

@@ -1,5 +1,7 @@
 #!/bin/bash -eu
 
+# フレームに分解済みのフォルダにフレーム数が記述されたn_framesを作成するスクリプト
+
 readonly INPUT_DIR=$1
 count=0
 

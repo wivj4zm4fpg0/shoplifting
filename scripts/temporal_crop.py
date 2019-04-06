@@ -1,3 +1,6 @@
+# csvファイルをもとに動画群を時間で切り取りを行うスクリプト
+
+
 import argparse
 import os
 import re
@@ -20,7 +23,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_csv, sep=' ')
+csv = pd.read_csv(args.input_csv, sep=r'\s', engine='python')
 
 os.makedirs(args.output_directory, exist_ok=True)
 

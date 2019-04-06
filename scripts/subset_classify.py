@@ -1,3 +1,7 @@
+# ランダムに訓練、テストデータに分割するスクリプト
+# divide_rateで分割する割合を調整できる
+
+
 import argparse
 import operator
 import random
@@ -12,9 +16,12 @@ parser.add_argument(
 parser.add_argument(
     '-o', '--output_file', default='subset_annotation.csv', type=str
 )
+parser.add_argument(
+    '--divide_rate', default=5, type=int
+)
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_file, sep=' ')
+csv = pd.read_csv(args.input_file, sep=r'\s', engine='python')
 action_index = 0
 no_action_index = 0
 subset = {}
@@ -22,7 +29,7 @@ subset = {}
 random_csv = list(range(len(csv)))
 random.shuffle(random_csv)
 
-divide_rate = 5
+divide_rate = args.divide_rate
 threshold = int((len(csv) - len(csv) / divide_rate) / 2)
 
 with open(args.output_file, 'w') as f:

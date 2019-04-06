@@ -1,3 +1,6 @@
+# 交差検証法のために1つのcsvからsubsetを記述した5つのcsvファイルを生成するスクリプト
+
+
 import argparse
 import re
 
@@ -15,7 +18,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_file, sep=' ')
+csv = pd.read_csv(args.input_file, sep=r'\s', engine='python')
 csv = csv.sort_values(by=['class', 'id'], ascending=True)
 
 divide_rate = args.divide_rate

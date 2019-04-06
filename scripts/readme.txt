@@ -1,3 +1,0 @@
-check_file_exist.py ファイルの存在を確かめる
-class_split.py クラスディレクトリを作成してそこにファイルを移動させる
-convert_mp4.py 動画をmp4に変換する

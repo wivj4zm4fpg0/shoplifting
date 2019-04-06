@@ -1,3 +1,6 @@
+# クラスファイルを作りそこに動画を移動させるスクリプト
+
+
 import argparse
 import os
 import shutil

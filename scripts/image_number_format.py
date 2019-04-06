@@ -1,3 +1,7 @@
+# remove_frames.pyを実行したあとframe_numberに圧していないフォルダを達するように整形するスクリプト
+# 具体的には最後のフレームに達したら最初のフレームから繰り替えすようにする
+
+
 import argparse
 import os
 

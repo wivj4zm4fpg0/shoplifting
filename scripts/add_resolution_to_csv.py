@@ -1,3 +1,6 @@
+# 動画の解像度が記述されていないcsvファイルに動画の解像度を記述するスクリプト
+
+
 import argparse
 import os
 
@@ -15,7 +18,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_csv, sep=' ')
+csv = pd.read_csv(args.input_csv, sep=r'\s', engine='python')
 
 with open(args.output_csv, 'w') as f:
     f.write('id video_name class start_time end_time'

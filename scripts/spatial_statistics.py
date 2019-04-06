@@ -1,3 +1,6 @@
+# csvファイルから動画の縦横のサイズの統計を取得するスクリプト
+
+
 import argparse
 
 import numpy as np
@@ -15,7 +18,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-csv = pd.read_csv(args.input_file, sep=' ')
+csv = pd.read_csv(args.input_file, sep=r'\s', engine='python')
 
 width = np.empty(0)
 height = np.empty(0)
