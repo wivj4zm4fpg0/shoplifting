@@ -1,5 +1,2 @@
-videos - クロッピングされていない動画群
-
-scripts
 download.sh - youtube-dlを用いて動画（没動画も含む）をダウンロードするスクリプト
-
+temporal_crop_in_video.py -> class_split.py -> extract_videos.py -> spatial_crop_and_resize_in_frames.py -> remove_frames.py -> image_number_format.py -> generation_frames_number.sh

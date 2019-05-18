@@ -5,6 +5,7 @@ import argparse
 import os
 
 import pandas as pd
+import re
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--csv_path', default=None, type=str)
@@ -22,7 +23,7 @@ for i in range(len(csv)):
             class_name = 'action'
         elif csv['class'][i] == 0:
             class_name = 'no_action'
-        input_dir_path = os.path.join(input_dir, class_name, csv['video_name'][i])
+        input_dir_path = os.path.join(input_dir, class_name, '{}_{}'.format(re.sub(r'\.mp4', '', csv['video_name'][i]), csv['id'][i]))
         for image in os.listdir(input_dir_path):
             if '.jpg' not in image:
                 continue
@@ -40,5 +41,5 @@ for i in range(len(csv)):
                 args.height,
                 image_path
             )
-            print(command)
-            # os.system(command)
+            # print(command)
+            os.system(command)
